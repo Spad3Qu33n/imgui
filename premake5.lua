@@ -1,7 +1,8 @@
 project "ImGui"
 	kind "StaticLib"
 	language "C++"
-    staticruntime "off"
+	cppdialect "C++20"
+    staticruntime "on"
 
 	targetdir ("/%{prj.name}/Binary/" .. outputdir)
 	objdir ("%{prj.name}/Intermediate/" .. outputdir)
@@ -23,26 +24,11 @@ project "ImGui"
 
 	filter "system:windows"
 		systemversion "latest"
-		cppdialect "C++17"
-
-	filter "system:linux"
-		pic "On"
-		systemversion "latest"
-		cppdialect "C++17"
 
 	filter "configurations:Debug"
-		runtime "Debug"
+		runtime "debug"
 		symbols "on"
 
-    filter "configurations:Development"
-		runtime "Release"
+    filter "configurations:Release"
+		runtime "release"
 		optimize "on"
-
-	filter "configurations:Release"
-		runtime "Release"
-		optimize "on"
-
-    filter "configurations:Dist"
-		runtime "Release"
-		optimize "on"
-        symbols "off"
